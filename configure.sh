@@ -63,7 +63,7 @@ MAKECONF_CFLAGS="$(solo5-config --toolchain=$CONFIG_TOOLCHAIN --cflags)"
 MAKECONF_CC="$(solo5-config --toolchain=$CONFIG_TOOLCHAIN --cc)"
 MAKECONF_LD="$(solo5-config --toolchain=$CONFIG_TOOLCHAIN --ld)"
 
-BUILD_ARCH="$(uname -m)"
+BUILD_ARCH="$(solo5-config --toolchain=$CONFIG_TOOLCHAIN --arch)"
 OCAML_BUILD_ARCH=
 AS=
 

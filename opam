@@ -18,16 +18,6 @@ depends: [
   "solo5-config-ocaml-static" {>= "0.7.0"}
   "ocaml" {>= "4.08.0" & < "4.12.0"}
 ]
-pin-depends: [
-  ["solo5.0.7.0" "git+https://github.com/mato/solo5#split-packages"]
-  ["solo5-bindings-spt.0.7.0" "git+https://github.com/mato/solo5#split-packages"]
-  ["solo5-bindings-hvt.0.7.0" "git+https://github.com/mato/solo5#split-packages"]
-  ["solo5-bindings-muen.0.7.0" "git+https://github.com/mato/solo5#split-packages"]
-  ["solo5-bindings-virtio.0.7.0" "git+https://github.com/mato/solo5#split-packages"]
-  ["solo5-bindings-xen.0.7.0" "git+https://github.com/mato/solo5#split-packages"]
-  ["solo5-bindings-spt.0.7.0" "git+https://github.com/mato/solo5#split-packages"]
-  ["solo5-config-ocaml-static.0.7.0" "git+https://github.com/mato/solo5#split-packages"]
-]
 conflicts: [
   "sexplib" {= "v0.9.0"}
   "solo5-kernel-ukvm"
