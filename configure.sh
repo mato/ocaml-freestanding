@@ -83,14 +83,15 @@ case "${BUILD_ARCH}" in
         ;;
 esac
 
-case "$($MAKECONF_CC -dumpmachine)" in
-    *-*-freebsd*|*-*-openbsd*)
+# XXX
+# case "$($MAKECONF_CC -dumpmachine)" in
+#     *-*-freebsd*|*-*-openbsd*)
         AS="$MAKECONF_CC -c"
-        ;;
-    *)
-        AS=as
-        ;;
-esac
+#         ;;
+#     *)
+#         AS=as
+#         ;;
+# esac
 
 PKG_CONFIG_EXTRA_LIBS=
 if [ "${BUILD_ARCH}" = "aarch64" ]; then
