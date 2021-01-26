@@ -86,10 +86,10 @@ CAMLRUN:=$(shell which ocamlrun)
 CAMLC:=$(shell which ocamlc)
 
 ocaml: ocaml/Makefile.config ocaml/runtime/caml/version.h
-	$(MAKE) -C ocaml/runtime libasmrun.a libasmrund.a ld.conf
-	$(MAKE) -C ocaml/runtime libcamlrun.a libcamlrund.a -t
-	$(MAKE) -C ocaml expunge ocaml ocamlc.opt ocamlopt.opt CAMLRUN=$(CAMLRUN) CAMLC=$(CAMLC) CAMLOPT=$(CAMLOPT)
-	$(MAKE) -C ocaml library libraryopt CAMLRUN=$(CAMLRUN) CAMLC=$(CAMLC) CAMLOPT=$(CAMLOPT)
+	$(MAKE) -j1 -C ocaml/runtime libasmrun.a libasmrund.a ld.conf
+	$(MAKE) -j1 -C ocaml/runtime libcamlrun.a libcamlrund.a -t
+	$(MAKE) -j1 -C ocaml expunge ocaml ocamlc.opt ocamlopt.opt CAMLRUN=$(CAMLRUN) CAMLC=$(CAMLC) CAMLOPT=$(CAMLOPT)
+	$(MAKE) -j1 -C ocaml library libraryopt CAMLRUN=$(CAMLRUN) CAMLC=$(CAMLC) CAMLOPT=$(CAMLOPT)
 	
 	# stub out the rest
 	cp $(shell which ocamlrun) ocaml/runtime/ocamlrun
@@ -99,11 +99,11 @@ ocaml: ocaml/Makefile.config ocaml/runtime/caml/version.h
 	cp $(shell which ocamlyacc) ocaml/yacc/ocamlyacc
 	touch ocaml/tools/objinfo_helper
 
-	$(MAKE) -C ocaml ocamlyacc ocamllex -t
-	$(MAKE) -C ocaml/tools objinfo_helper -t
-	$(MAKE) -C ocaml/tools ocamlmklib CAMLRUN=$(CAMLRUN) CAMLC=$(CAMLC) CAMLOPT=$(CAMLOPT)
-	$(MAKE) -C ocaml/tools profiling.cmx CAMLRUN=$(CAMLRUN) CAMLC=$(CAMLC) CAMLOPT=$(CAMLOPT)
-	$(MAKE) -C ocaml otherlibraries otherlibrariesopt CAMLRUN=$(CAMLRUN) CAMLC=$(CAMLC) CAMLOPT=$(CAMLOPT)
+	$(MAKE) -j1 -C ocaml ocamlyacc ocamllex -t
+	$(MAKE) -j1 -C ocaml/tools objinfo_helper -t
+	$(MAKE) -j1 -C ocaml/tools ocamlmklib CAMLRUN=$(CAMLRUN) CAMLC=$(CAMLC) CAMLOPT=$(CAMLOPT)
+	$(MAKE) -j1 -C ocaml/tools profiling.cmx CAMLRUN=$(CAMLRUN) CAMLC=$(CAMLC) CAMLOPT=$(CAMLOPT)
+	$(MAKE) -j1 -C ocaml otherlibraries otherlibrariesopt CAMLRUN=$(CAMLRUN) CAMLC=$(CAMLC) CAMLOPT=$(CAMLOPT)
 
 # CONFIGURATION FILES
 ocaml-freestanding.pc: ocaml-freestanding.pc.in Makeconf
