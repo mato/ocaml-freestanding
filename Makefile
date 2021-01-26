@@ -66,6 +66,7 @@ ocaml/Makefile.config: ocaml/Makefile stubs/solo5_stubs.o openlibm/libopenlibm.a
 		CPPFLAGS="$(OC_CFLAGS)" \
 		LIBS="$(OC_LIBS)"\
 		LD="$(MAKECONF_LD)" \
+		ac_cv_prog_DIRECT_LD="$(MAKECONF_LD)" \
 	  ./configure \
 		-host=$(MAKECONF_BUILD_ARCH)-unknown-none \
 		-prefix $(MAKECONF_PREFIX)/freestanding-sysroot \
