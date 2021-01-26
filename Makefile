@@ -15,12 +15,16 @@ GLOBAL_CFLAGS=$(MAKECONF_CFLAGS) -I$(MAKECONF_PREFIX)/freestanding-sysroot/inclu
 NOLIBC_CFLAGS=$(LOCAL_CFLAGS) -I$(TOP)/openlibm/src -I$(TOP)/openlibm/include
 nolibc/libnolibc.a:
 	$(MAKE) -C nolibc \
+	    "CC=$(MAKECONF_CC)" \
 	    "FREESTANDING_CFLAGS=$(NOLIBC_CFLAGS)" \
 	    "SYSDEP_OBJS=$(MAKECONF_NOLIBC_SYSDEP_OBJS)"
 
 # OPENLIBM
 openlibm/libopenlibm.a:
-	$(MAKE) -C openlibm "CFLAGS=$(LOCAL_CFLAGS)" libopenlibm.a
+	$(MAKE) -C openlibm \
+	    "CC=$(MAKECONF_CC)" \
+	    "CFLAGS=$(LOCAL_CFLAGS)" \
+	    libopenlibm.a
 
 # OCAML
 ocaml/Makefile:
@@ -120,6 +124,7 @@ uninstall:
 clean:
 	$(RM) -r ocaml/
 	$(RM) ocaml-freestanding.pc freestanding.conf
+	$(RM) stubs/solo5_stubs.o
 	$(MAKE) -C openlibm clean
 	$(MAKE) -C nolibc \
 	    "FREESTANDING_CFLAGS=$(NOLIBC_CFLAGS)" \
